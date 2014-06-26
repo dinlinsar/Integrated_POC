@@ -1,0 +1,91 @@
+<!doctype html>
+<title>CodeMirror: Any Word Completion Demo</title>
+<meta charset="utf-8"/>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<link href="css/jquery.contextMenu.css" rel="stylesheet"/>
+<link href="css/screen.css" rel="stylesheet"/>
+<link href="css/codemirror.css" rel="stylesheet"/>
+<script language="JavaScript" type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/jquery-ui.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/jquery.ui.position.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/jquery.textcomplete.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/jquery.contextMenu.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/main.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/codemirror.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/javascript.js"></script>
+<script>
+   $(document).ready(function() {
+   $("#tabs li").each(function() 
+   	{
+   		$(this).click(function() 
+   		{
+   			
+   			var tabId = $(this).attr('id');
+   			var tabId = tabId.split('-');
+   			var tabContent = document.getElementById('tab-content-' + tabId[1]);
+   			tabContent.style.display = 'block';
+   			$(this).addClass('selected');
+   			$(this).siblings().removeClass('selected');			
+   			$(tabContent).siblings().css('display','none');	
+   			console.log($(tabContent).attr("id"));
+   			var text =  $('#textarea1').val();
+   			$('#code').val(text);
+   			if($(tabContent).attr("id") == "tab-content-2"){
+   				$('.CodeMirror').remove();
+   				 var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+				 mode: "text/javascript",
+   				lineNumbers: false
+   			  });
+   			  
+   			}
+
+   		});
+   	});
+   });
+</script>
+<article>
+   <h1><a>TRULES EDITOR</a></h1>
+   <h3>TJ UI TEAM</h3>
+   <div class="container">
+      <ul id="tabs" class="clearfix">
+         <li id="tab-1" class="selected">
+            <a href="#">	
+            <label class="grey_text_color">TextArea</label>
+            </a>
+         </li>
+         <li id="tab-2">
+            <a href="#">	
+            <label>Editor</label>
+            </a>
+         </li>
+      </ul>
+      <div id="tabs-content">
+         <div id="tab-content-1" style="display:block">
+            <textarea class="context-menu-sub" id="textarea1" name="txtMessage" style="width: 926px;height: 300px;">        
+            </textarea>
+         </div>
+         <div id="tab-content-2" style="padding-bottom: 13px;">
+            <textarea id="code" name="code" style="width: 100%;height: 200px;display:none !important">
+            </textarea>
+         </div>
+      </div>
+      <ul id="DragWordList">
+         <li>
+            <label id="label1">Entity</label>
+            <ul>
+               <li id="hi">Entity1</li>
+               <li>Entity2</li>
+               <li>Entity3</li>
+            </ul>
+         </li>
+         <li>
+            <label id="label1">Attribute</label>
+            <ul>
+               <li>Attribute1</li>
+               <li>Attribute2</li>
+               <li>Attribute3</li>
+            </ul>
+         </li>
+      </ul>
+   </div>
+</article>
